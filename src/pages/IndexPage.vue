@@ -1,17 +1,46 @@
 <template>
   <q-page class="flex flex-center">
-    <img
-      alt="Quasar logo"
-      src="~assets/quasar-logo-vertical.svg"
-      style="width: 200px; height: 200px"
+
+    <div
+      class="threatCircle"
+      ref="threatCircle"
+      :style="{
+        width: store.circleMinRadius + 'px',
+        height: store.circleMinRadius + 'px',
+        backgroundColor: store.circleBackgroundColor
+      }"
     >
+    </div>
+
   </q-page>
 </template>
 
 <script>
-import { defineComponent } from 'vue';
+import { defineComponent, watch } from 'vue';
+import { useAppStore } from '../stores/app';
 
 export default defineComponent({
   name: 'IndexPage',
+
+  setup(){
+    const store = useAppStore();
+
+    store.$subscribe((mutation,state)=>{
+      debugger
+    })
+
+    return {
+      store,
+    };
+  },
+
 });
 </script>
+
+<style scoped>
+
+  .threatCircle {
+    border-radius: 50%;
+  }
+
+</style>
